@@ -1,29 +1,45 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
 
-* {
+*{
   margin: 0;
   padding: 0;
 }
 
-:root {
+:root{
   --main-color: #1B6758;
   --color-text: white;
 }
 
-body {
+body{
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-p {
-  line-height: 1.25;
-  font-size: 25px;
+h1, h2, h3, h4, p {
+  color : var(--color-text);
 }
 
-a {
+p{
+  font-size: 20px;
+}
+
+a{
   text-decoration: none;
   color : var(--color-text);
+}
+
+button {
+  cursor: pointer;
+  border:none;
+  background: transparent;
+  color : inherit;
+}
+
+button:disabled,
+button[disabled] {
+  cursor: pointer;
+  pointer-events: none;
 }
 
 /* .Logo {
@@ -33,29 +49,59 @@ a {
   mask-image: url("data:image/svg+xml,%3Csvg width='24' height='33' viewBox='0 0 24 33' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2.25 0C1.00736 0 0 1.00736 0 2.25V30.75C0 31.9926 1.00736 33 2.25 33C3.49264 33 4.5 31.9926 4.5 30.75V4.5H21.75C22.9926 4.5 24 3.49264 24 2.25C24 1.00736 22.9926 0 21.75 0H2.25Z' fill='%23FAFAFA'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4.5 9.75C4.5 8.50736 3.49264 7.5 2.25 7.5C1.00736 7.5 0 8.50736 0 9.75V16.5V23.25C0 24.4926 1.00736 25.5 2.25 25.5C3.49264 25.5 4.5 24.4926 4.5 23.25V18.5769H15.9231C17.0701 18.5769 18 17.6471 18 16.5C18 15.353 17.0701 14.4231 15.9231 14.4231H4.5V9.75Z' fill='transparent'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M3.5 17.5769H15.9231C16.5178 17.5769 17 17.0948 17 16.5C17 15.9052 16.5178 15.4231 15.9231 15.4231H3.5V9.75C3.5 9.05964 2.94036 8.5 2.25 8.5C1.55964 8.5 1 9.05964 1 9.75V23.25C1 23.9404 1.55964 24.5 2.25 24.5C2.94036 24.5 3.5 23.9404 3.5 23.25V17.5769ZM4.5 23.25C4.5 24.4926 3.49264 25.5 2.25 25.5C1.00736 25.5 0 24.4926 0 23.25V9.75C0 8.50736 1.00736 7.5 2.25 7.5C3.49264 7.5 4.5 8.50736 4.5 9.75V14.4231H15.9231C17.0701 14.4231 18 15.353 18 16.5C18 17.6471 17.0701 18.5769 15.9231 18.5769H4.5V23.25Z' fill='%23FAFAFA'/%3E%3C/svg%3E%0A");
 } */
 
-nav {
+nav{
   background-color: var(--main-color);
   color : var(--color-text);
   z-index: 2;
   position: relative;
 }
 
-nav ul {
+nav ul{
   list-style-type: none;
   display: flex;
-  padding : 10px;
   justify-content: center;
+  height : 80px;
+  align-items: center;
 }
 
-nav li {
-  margin : 10px;
+nav li{
+  margin : 0 15px;
 }
 
-nav li a {
-  font-size: 16px;
+nav li a{
+  font-size: 19px;
   opacity: 0.6;
 }
 
-nav li a.active {
+nav li a.active{
   opacity: 1;
+}
+
+.ColorPicker{
+  position: absolute;
+  right: 50px;
+  border: 2px solid;
+  width: 33px;
+  height: 33px;
+  border-radius: 100%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.ColorPicker svg {
+  font-size: 17px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.color-picker {
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  z-index: 3;
 }

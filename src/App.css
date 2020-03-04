@@ -1,10 +1,5 @@
 .App {
   text-align: center;
-  height: 100vh;
-  position: absolute;
-  width: 100%;
-  top:0;
-  z-index: 1;
 }
 
 .App-header {
@@ -15,29 +10,109 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+  top:0;
+  z-index: 1;
 }
 
-.App-link {
-  color: var(--color-text);
+.Social-icons {
+  display: flex;
+}
+
+.Social-icons .social-svg-mask {
+  fill : var(--color-text)!important;
+}
+
+.social-icon {
+  opacity: 0.7;
+  margin : 10px 15px;
+  width: 36px!important;
+  height: 36px!important;
+  transition: transform ease-in .2s, opacity ease-in .2s;
+  position: relative;
+  display: block;
+  border-radius: 100%;
+}
+
+.social-icon:hover {
+  opacity: 1;
+  transform: translate(0, -5px);
+  box-shadow: 0px 5px 10px #00000020;
+}
+
+.Social-icons div {
+  position: relative;
 }
 
 
-@supports (-webkit-text-stroke: 1px var(--color-text)) {
+@supports (-webkit-text-stroke: 1.5px var(--color-text)) {
   h2 {
-    -webkit-text-stroke: 1px var(--color-text);
+    -webkit-text-stroke: 1.5px var(--color-text);
     -webkit-text-fill-color: transparent;
   }
 }
 
 h2 {
-  font-size: 28px;
+  font-size: 34px;
+  margin: 10px;
 }
 
 h1 {
-  font-size: 38px;
+  font-size: 40px;
+  margin: 10px;
+}
+
+.Description p {
+  margin : 10px 0 15px;
+  font-size: 23px;
+  opacity: 0.95;
 }
 
 .Description {
-  margin : 5px;
+  margin : 10px;
 }
+
+.ScrollDown {
+  position: fixed;
+  bottom:20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ScrollDown p {
+  font-size: 16px;
+  margin: 10px;
+}
+
+.ScrollDown svg {
+  color : var(--color-text);
+    animation: pulse 2s infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+  50% {
+    -webkit-transform: translate(0, 10px);
+            transform: translate(0, 10px); }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); } 
+          }
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); }
+  50% {
+    -webkit-transform: translate(0, 10px);
+            transform: translate(0, 10px); }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0); } 
+          }
