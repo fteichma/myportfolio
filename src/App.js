@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import * as Icon from "react-feather";
 import { SocialIcon } from "react-social-icons";
 

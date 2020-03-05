@@ -8,20 +8,25 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import './index.scss';
 import { Route, NavLink, BrowserRouter as Router, Switch } from 'react-router-dom';
 import App from './App';
-import Contact from './Contact';
+import Portfolio from './Portfolio';
 import NotFound from './NotFound';
 import * as serviceWorker from './serviceWorker';
 
 export default class Root extends React.Component {
     static initialState = {
         colorPicker: false,
-        mainColor: "#1B6758",
-        colorText: "white"
+        mainColor: localStorage.getItem("mainColor") ? localStorage.getItem("mainColor") : "#1B6758",
+        colorText: localStorage.getItem("colorText") ? localStorage.getItem("colorText") : "rgba(255, 255, 255, 0.95)",
     };
 
     constructor(props) {
         super(props);
         this.state = Root.initialState;
+    }
+
+    componentDidMount() {
+        document.documentElement.style.setProperty('--main-color', this.state.mainColor);
+        document.documentElement.style.setProperty('--color-text', this.state.colorText);
     }
 
     colorPicker = () => {
@@ -43,13 +48,13 @@ export default class Root extends React.Component {
         colorPersoB = parseInt(colorPersoB, 16);
         let o = Math.round(((parseInt(colorPersoR) * 299) + (parseInt(colorPersoG) * 587) + (parseInt(colorPersoB) * 114)) / 1000);
         if (o < 125) {
-            localStorage.setItem("colorText", "#fff");
+            localStorage.setItem("colorText", "rgba(255, 255, 255, 0.95)");
             document.documentElement.style.setProperty('--color-text', "rgba(255, 255, 255, 0.95)");
-            this.setState({ colorText: "#fff" });
+            this.setState({ colorText: "rgba(255, 255, 255, 0.95)" });
         } else {
-            localStorage.setItem("colorText", "#000");
+            localStorage.setItem("colorText", "rgba(0, 0, 0, 0.90)");
             document.documentElement.style.setProperty('--color-text', "rgba(0, 0, 0, 0.90)");
-            this.setState({ colorText: "#000" });
+            this.setState({ colorText: "rgba(0, 0, 0, 0.90)" });
         }
     };
 
@@ -63,7 +68,7 @@ export default class Root extends React.Component {
                                 <NavLink exact activeClassName="active" to="/">Home</NavLink>
                             </li>
                             <li>
-                                <NavLink exact activeClassName="active" to="/contact">Contact</NavLink>
+                                <NavLink exact activeClassName="active" to="/portfolio">Portfolio</NavLink>
                             </li>
                             <button disabled={this.state.colorPicker} className="ColorPicker" onClick={this.colorPicker}>
                                 <ColorizeOutlined />
@@ -84,7 +89,7 @@ export default class Root extends React.Component {
                     )}
                     <Switch>
                         <Route exact path="/" component={App} />
-                        <Route path="/contact" component={Contact} />
+                        <Route path="/portfolio" component={Portfolio} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>
