@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,500,700&display=swap');
 
 *{
   margin: 0;
@@ -7,11 +7,11 @@
 
 :root{
   --main-color: #1B6758;
-  --color-text: white;
+  --color-text: rgba(255, 255, 255, 0.95);
 }
 
 body{
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-family: 'Nunito', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -54,27 +54,23 @@ nav{
   color : var(--color-text);
   z-index: 2;
   position: relative;
-}
-
-nav ul{
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-  height : 80px;
-  align-items: center;
-}
-
-nav li{
-  margin : 0 15px;
-}
-
-nav li a{
-  font-size: 19px;
-  opacity: 0.6;
-}
-
-nav li a.active{
-  opacity: 1;
+  ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    height : 80px;
+    align-items: center;
+  }
+  li{
+    margin : 0 15px;
+  }
+  a{
+    font-size: 19px;
+    opacity: 0.6;
+  }
+  a.active{
+    opacity: 1;
+  }
 }
 
 .ColorPicker{
@@ -87,16 +83,15 @@ nav li a.active{
   top: 0;
   bottom: 0;
   margin: auto;
-}
-
-.ColorPicker svg {
-  font-size: 17px;
-  margin: auto;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  svg {
+    font-size: 17px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 .color-picker {

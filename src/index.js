@@ -44,11 +44,11 @@ export default class Root extends React.Component {
         let o = Math.round(((parseInt(colorPersoR) * 299) + (parseInt(colorPersoG) * 587) + (parseInt(colorPersoB) * 114)) / 1000);
         if (o < 125) {
             localStorage.setItem("colorText", "#fff");
-            document.documentElement.style.setProperty('--color-text', "#fff");
+            document.documentElement.style.setProperty('--color-text', "rgba(255, 255, 255, 0.95)");
             this.setState({ colorText: "#fff" });
         } else {
             localStorage.setItem("colorText", "#000");
-            document.documentElement.style.setProperty('--color-text', "#000");
+            document.documentElement.style.setProperty('--color-text', "rgba(0, 0, 0, 0.90)");
             this.setState({ colorText: "#000" });
         }
     };
