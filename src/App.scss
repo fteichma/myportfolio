@@ -1,17 +1,22 @@
+$breakpoint-xsmall: 360px;
+$breakpoint-small: 576px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 992px;
+$breakpoint-xlarge: 1200px;
+
 .App {
   text-align: center;
 }
 
 .App-header {
   background-color: var(--main-color);
+/*   animation: background-change 15s ease-in infinite;  */  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   height: 100vh;
-  position: absolute;
   width: 100%;
   top:0;
   z-index: 1;
@@ -95,6 +100,116 @@
   }
 }
 
+.App-content {
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  margin-top : 40px;
+  h1 {
+    font-size: 25px;
+    margin: 0 15px 40px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    position: relative;
+    color: rgba(0, 0, 0, 0.8);
+    &::after{
+        content: "";
+        width: 35px;
+        height: 4px;
+        background: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        bottom: -15px;
+        border-radius: 40px;
+    }
+  }
+  h2 {  
+    font-size: 16px;
+    display: flex;
+    font-weight: 500;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  .col-lg-3 {
+    height: 250px;
+  }
+  .chartjs-render-monitor {
+    margin: auto;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(1.6);
+  }
+
+  @media (max-width: $breakpoint-large) {
+    .chartjs-render-monitor {
+      transform: scale(0.55);
+    }
+  }
+  @media (max-width: $breakpoint-medium) {
+    .chartjs-render-monitor {
+      transform: scale(0.85);
+    }
+  }
+  @media (min-width : $breakpoint-large) {
+    .chart .col-lg-3:nth-child(1) {
+      margin-left: 30px;
+    }
+    .chart .col-lg-3:nth-child(2) {
+      margin-left: -30px;
+    }
+    .chart .col-lg-3:nth-child(3) {
+      margin-left: 30px;
+    }
+    .chart .col-lg-3:nth-child(4) {
+      margin-left: -30px;
+    }
+    .App-content .col-lg-3 {
+      height: 215px!important;
+    }
+  }
+}
+
+.ColorPicker{
+  position: fixed;
+  right: 35px;
+  border: 2px solid;
+  width: 33px;
+  height: 33px;
+  border-radius: 100%;
+  top: 25px;
+  margin: auto;
+  color: var(--color-text);
+  z-index: 5;
+  svg {
+    font-size: 17px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.color-picker {
+  position: fixed;
+  top: 75px;
+  right: 35px;
+  z-index: 3;
+}
+
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: translate(0, 0);
@@ -118,3 +233,13 @@
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0); } 
 }
+
+/* @keyframes background-change {
+  0% { background-color: #1B6758; }
+  16% { background-color: #1B3067; }  
+  33% { background-color: #461B67; }
+  50% { background-color: #671B2D; }
+  66% { background-color: #675F1B;}
+  84% { background-color: #2F671B;}
+  100% { background-color: #1B6743;}
+} */
