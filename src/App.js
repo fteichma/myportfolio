@@ -2,12 +2,11 @@ import React from 'react';
 import './App.scss';
 import * as Icon from "react-feather";
 import { SocialIcon } from "react-social-icons";
-import { Doughnut } from 'react-chartjs-2';
-import { ChromePicker } from 'react-color';
-import { ColorizeOutlined } from '@material-ui/icons';
-import OutsideClickHandler from 'react-outside-click-handler';
-
-
+import Chart from "react-apexcharts";
+import { CalendarTodayRounded } from '@material-ui/icons';
+import "./Portfolio.scss";
+import * as jribbble from 'jribbble';
+import dribbble from './dribbble.svg';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,45 +16,17 @@ class App extends React.Component {
       width: 0,
       height: 0,
       mainColor: localStorage.getItem("mainColor") ? localStorage.getItem("mainColor") : "#1B6758",
-      colorText: localStorage.getItem("colorText") ? localStorage.getItem("colorText") : "rgba(255, 255, 255, 0.95)",
-      colorPicker: false,
-    }
+      shots: null,
+      dribbbleShotKey: null,
+    };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
-  componentDidMount() {
+  async componentDidMount() {
     this.updateWindowDimensions();
+    await this.getDribbbleShots();
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.updateWindowDimensions);
-    document.documentElement.style.setProperty('--main-color', this.state.mainColor);
-    document.documentElement.style.setProperty('--color-text', this.state.colorText);
   }
-  colorPicker = () => {
-    this.setState({
-      colorPicker: true,
-    })
-  }
-  handleChangeComplete = (color) => {
-    this.setState({ mainColor: color.hex });
-    document.documentElement.style.setProperty('--main-color', color.hex);
-    localStorage.setItem("mainColor", color.hex);
-    let colorPerso = this.state.mainColor;
-    let colorPersoR = colorPerso[1] + "" + colorPerso[2];
-    let colorPersoG = colorPerso[3] + "" + colorPerso[4];
-    let colorPersoB = colorPerso[5] + "" + colorPerso[6];
-    colorPersoR = parseInt(colorPersoR, 16);
-    colorPersoG = parseInt(colorPersoG, 16);
-    colorPersoB = parseInt(colorPersoB, 16);
-    let o = Math.round(((parseInt(colorPersoR) * 299) + (parseInt(colorPersoG) * 587) + (parseInt(colorPersoB) * 114)) / 1000);
-    if (o < 125) {
-      localStorage.setItem("colorText", "rgba(255, 255, 255, 0.95)");
-      document.documentElement.style.setProperty('--color-text', "rgba(255, 255, 255, 0.95)");
-      this.setState({ colorText: "rgba(255, 255, 255, 0.95)" });
-    } else {
-      localStorage.setItem("colorText", "rgba(0, 0, 0, 0.90)");
-      document.documentElement.style.setProperty('--color-text', "rgba(0, 0, 0, 0.90)");
-      this.setState({ colorText: "rgba(0, 0, 0, 0.90)" });
-    }
-  };
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
     window.removeEventListener('resize', this.updateWindowDimensions);
@@ -65,156 +36,27 @@ class App extends React.Component {
       scrollY: window.scrollY,
     })
   };
+  getDribbbleShots = () => {
+    const dribbbleshots = [];
+    jribbble.shots({ token: "1d4677141b29098b931d5390f027a4cc8ea1d2679817092400d9a17ce6fa2294" },
+      (shots) => {
+        shots.map((item, i) => {
+          dribbbleshots.push(item)
+          return item;
+        })
+      });
+    this.setState({ shots: dribbbleshots });
+  }
   updateWindowDimensions = () => {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   };
-  doughnutGenerator = (data, items) => {
-    for (let i in data) {
-      items.push(
-        <div className="col-lg-3">
-          <Doughnut
-            data={data[i]}
-            options={{
-              maintainAspectRatio: 1,
-              aspectRatio: 1,
-              animation: {
-                animateRotate: true,
-                animateScale: false
-              },
-              cutoutPercentage: 65,
-              legend: {
-                display: false
-              },
-              title: {
-                display: false
-              }
-            }
-            }
-          />
-          <h2>{data[i].labels}</h2>
-        </div>
-      )
-    };
-  }
-  changeColor = (color) => {
-    this.setState({
-      mainColor: color,
-    })
-  }
   render() {
-    const data = {
-      0: {
-        labels: ["Figma"],
-        datasets: [
-          {
-            fill: false,
-            backgroundColor: [this.state.mainColor, this.state.mainColor + "70"],
-            data: [75, 25],
-            borderWidth: 1,
-          }
-        ]
-      },
-      1: {
-        labels: ["UX Design"],
-        datasets: [
-          {
-            fill: false,
-            backgroundColor: [this.state.mainColor, this.state.mainColor + "70"],
-            data: [60, 40],
-            borderWidth: 1,
-          }
-        ]
-      },
-      2: {
-        labels: ["ReactJS"],
-        datasets: [
-          {
-            fill: false,
-            backgroundColor: [this.state.mainColor, this.state.mainColor + "70"],
-            data: [75, 25],
-            borderWidth: 1,
-          }
-        ]
-      },
-      3: {
-        labels: ["SCSS"],
-        datasets: [
-          {
-            fill: false,
-            backgroundColor: [this.state.mainColor, this.state.mainColor + "70"],
-            data: [60, 40],
-            borderWidth: 1,
-          }
-        ]
-      }
-    };
-    const data2 = {
-      0: {
-        labels: ["Photoshop"],
-        datasets: [
-          {
-            fill: false,
-            backgroundColor: [this.state.mainColor, this.state.mainColor + "70"],
-            data: [80, 20],
-            borderWidth: 1,
-          }
-        ]
-      },
-      1: {
-        labels: ["UI Design"],
-        datasets: [
-          {
-            fill: false,
-            backgroundColor: [this.state.mainColor, this.state.mainColor + "70"],
-            data: [85, 15],
-            borderWidth: 1,
-          }
-        ]
-      },
-      2: {
-        labels: ["React Native"],
-        datasets: [
-          {
-            fill: false,
-            backgroundColor: [this.state.mainColor, this.state.mainColor + "70"],
-            data: [65, 35],
-            borderWidth: 1,
-          }
-        ]
-      },
-      3: {
-        labels: ["PHP"],
-        datasets: [
-          {
-            fill: false,
-            backgroundColor: [this.state.mainColor, this.state.mainColor + "70"],
-            data: [65, 35],
-            borderWidth: 1,
-          }
-        ]
-      }
-    };
-    const items = [];
-    const items2 = [];
-    this.doughnutGenerator(data, items);
-    this.doughnutGenerator(data2, items2);
+    const series = [[75, 25], [60, 40], [80, 20], [85, 15]];
+    const series2 = [[75, 25], [75, 25], [65, 40], [85, 15], [65, 35], [65, 35], [95, 5], [80, 20]];
+    const labels = [['Figma'], ['UX Design'], ['Photoshop'], ['UI Design']];
+    const labels2 = [['ReactJS'], ['NPM'], ['SCSS'], ['CSS3'], ['React Native'], ['PHP'], ['HTML5'], ['JS - ES6']];
     return (
-      <div className="App">
-        <button disabled={this.state.colorPicker} className="ColorPicker" onClick={this.colorPicker}>
-          <ColorizeOutlined />
-        </button>
-        {this.state.colorPicker && (
-          <OutsideClickHandler
-            onOutsideClick={() => {
-              this.setState({ colorPicker: false })
-            }}>
-            <ChromePicker
-              className={"color-picker"}
-              disableAlpha={true}
-              color={this.state.mainColor}
-              onChangeComplete={this.handleChangeComplete} />
-          </OutsideClickHandler>
-        )}
+      <div className="App" >
         <header className="App-header">
           <h2 className="animated fadeInDown delay-200ms">Hello, I'm</h2>
           <h1 className="animated fadeInDown delay-400ms">Fabian Teichmann</h1>
@@ -223,35 +65,275 @@ class App extends React.Component {
             <p>UI/UX Designer</p>
           </div>
           <div className="Social-icons animated fadeInUp delay-1s">
-            <SocialIcon network="facebook" url="https://www.facebook.com/fabifabfabi" bgColor="white" />
-            <SocialIcon network="dribbble" url="https://dribbble.com/fteichma" bgColor="white" />
-            <SocialIcon network="linkedin" url="https://www.linkedin.com/in/fabian-teichmann-aa2340131/" bgColor="white" />
+            <SocialIcon id="facebook" network="facebook" url="https://www.facebook.com/fabifabfabi" />
+            <SocialIcon id="dribbble" network="dribbble" url="https://dribbble.com/fteichma" />
+            <SocialIcon id="linkedin" network="linkedin" url="https://www.linkedin.com/in/fabian-teichmann-aa2340131/" />
           </div>
           {this.state.scrollY <= 60 && (
             <div className="ScrollDown" onClick={() => window.scrollTo(0, this.state.height)}>
-              <p>Scroll down</p>
               <Icon.ArrowDown />
             </div>
           )}
         </header>
-        <article className="App-content container" id="skills">
-          {this.state.scrollY >= 100 && (
-            <div>
-              <h1 className="animated fadeInLeft">Skills</h1>
-              <div className="row animated fadeInLeft fast chart">
-                {
-                  items
-                }
+        <article className="App-content" id="skills">
+          <div>
+            <h1 className="animated fadeInLeft">My skills</h1>
+            <div className="row animated fadeInLeft fast chart">
+              <div className="col-md-6">
+                <h2>Development</h2>
+                <div className="row">
+                  {series2.map((object, i) => {
+                    return (
+                      <div className="col-lg-6 chart-donut" key={"donut" + i}>
+                        <Chart
+                          options={{
+                            chart: {
+                              type: "donut",
+                              width: "100%",
+                            },
+                            responsive: [{
+                              breakpoint: 576,
+                              options: {
+                                chart: {
+                                  width: 280
+                                },
+                              }
+                            },
+                            {
+                              breakpoint: 768,
+                              options: {
+                                chart: {
+                                  width: 340
+                                },
+                              }
+                            },
+                            {
+                              breakpoint: 992,
+                              options: {
+                                chart: {
+                                  width: 300
+                                },
+                              }
+                            },
+                            {
+                              breakpoint: 1200,
+                              options: {
+                                chart: {
+                                  width: 220
+                                },
+                              }
+                            },
+                            {
+                              breakpoint: 25500,
+                              options: {
+                                chart: {
+                                  width: 230,
+                                },
+                              }
+                            },
+                            ],
+                            dataLabels: {
+                              enabled: false
+                            },
+                            plotOptions: {
+                              pie: {
+                                donut: {
+                                  labels: {
+                                    show: true,
+                                    name: {
+                                      show: true,
+                                      fontSize: '20px',
+                                      color: '#000',
+                                      offsetY: 0,
+                                      formatter: function () {
+                                        return labels2[i];
+                                      }
+                                    },
+                                    value: {
+                                      show: false,
+                                    },
+                                    total: {
+                                      show: true,
+                                      label: labels2[i],
+                                      color: '#373d3f',
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            tooltip: {
+                              enabled: true,
+                              y: {
+                                formatter: function (val) {
+                                  return val + "%"
+                                },
+                                title: {
+                                  formatter: function () {
+                                    return labels2[i]
+                                  }
+                                }
+                              }
+                            },
+                            legend: {
+                              show: false
+                            }
+                          }
+                          }
+                          series={object}
+                          type={"donut"} />
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
-              <div className="row animated fadeInRight fast chart">
-                {
-                  items2
-                }
+              <div className="col-md-6">
+                <h2>Design</h2>
+                <div className="row">
+                  {series.map((object, i) => {
+                    return (
+                      <div className="col-lg-6 chart-donut" key={"donut" + i}>
+                        <Chart
+                          style={{
+                            width: "100%",
+                            maxWidth: "100%",
+                            position: "relative",
+                          }}
+                          options={{
+                            chart: {
+                              width: "100%",
+                              type: "donut"
+                            },
+                            responsive: [{
+                              breakpoint: 576,
+                              options: {
+                                chart: {
+                                  width: 280
+                                },
+                              }
+                            },
+                            {
+                              breakpoint: 768,
+                              options: {
+                                chart: {
+                                  width: 340
+                                },
+                              }
+                            },
+                            {
+                              breakpoint: 992,
+                              options: {
+                                chart: {
+                                  width: 300
+                                },
+                              }
+                            },
+                            {
+                              breakpoint: 1200,
+                              options: {
+                                chart: {
+                                  width: 220
+                                },
+                              }
+                            },
+                            {
+                              breakpoint: 25500,
+                              options: {
+                                chart: {
+                                  width: 230,
+                                },
+                              }
+                            },
+                            ],
+                            dataLabels: {
+                              enabled: false
+                            },
+                            plotOptions: {
+                              pie: {
+                                donut: {
+                                  labels: {
+                                    show: true,
+                                    name: {
+                                      show: true,
+                                      fontSize: '20px',
+                                      color: '#000',
+                                      offsetY: 0,
+                                      formatter: function () {
+                                        return labels[i];
+                                      }
+                                    },
+                                    value: {
+                                      show: false,
+                                    },
+                                    total: {
+                                      show: true,
+                                      label: labels[i],
+                                      color: '#373d3f',
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            tooltip: {
+                              enabled: true,
+                              y: {
+                                formatter: function (val) {
+                                  return val + "%"
+                                },
+                                title: {
+                                  formatter: function () {
+                                    return labels[i]
+                                  }
+                                }
+                              }
+                            },
+                            legend: {
+                              show: false
+                            }
+                          }
+                          }
+                          series={object}
+                          type={"donut"} />
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </div>
-          )}
+          </div>
+          <div className="container" id="dribbble-shots">
+            <h1 className="animated fadeInDown">Last shots on <a href="https://dribbble.com/fteichma" target="_blank" rel="noopener noreferrer"><img src={dribbble} alt="Dribbble" /></a> </h1>
+            <div ref={this.dribbbleShots} className="row animated bounceInUp fast">
+              {this.state.shots && (
+                this.state.shots.map((shot, key) => {
+                  let date = new Date(shot.published_at);
+                  let year = date.getFullYear();
+                  let month = date.toLocaleString('en', { month: 'long' })
+                  let dt = date.getDate();
+                  if (dt < 10) {
+                    dt = '0' + dt;
+                  }
+                  const _date = month + " " + dt + ", " + year;
+                  return (
+                    <div
+                      key={key}
+                      onMouseOver={() => this.setState({ dribbbleShotKey: key })}
+                      onMouseOut={() => this.setState({ dribbbleShotKey: null })}
+                      className={"col-lg-4 col-md-6 shot"}
+                      style={{ backgroundImage: "url(" + shot.images.two_x + ")" }}>
+                      {this.state.dribbbleShotKey === key && (
+                        <div className="description">
+                          <p>{shot.title}</p>
+                          <p> <CalendarTodayRounded /> {_date}</p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
         </article>
-      </div>
+      </div >
     );
   }
 }

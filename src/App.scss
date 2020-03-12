@@ -27,8 +27,34 @@ $breakpoint-xlarge: 1200px;
     display: flex;
   }
   
-  .Social-icons .social-svg-mask {
+  .Social-icons {
+    .social-svg-mask {
     fill : var(--color-text)!important;
+    }
+    #facebook:hover {
+      .social-svg-mask {
+        fill:#3b5998!important;
+      }
+      .social-svg-background {
+        fill:white!important;
+      }
+    }
+    #dribbble:hover {
+      .social-svg-mask {
+        fill:#ea4c89!important;
+      }
+      .social-svg-background {
+        fill:white!important;
+      }
+    }
+    #linkedin:hover {
+      .social-svg-mask {
+        fill:#2867B2!important;
+      }
+      .social-svg-background {
+        fill:white!important;
+      }
+    }
   }
   
   .social-icon {
@@ -68,16 +94,18 @@ $breakpoint-xlarge: 1200px;
   h1 {
     font-size: 40px;
     margin: 10px;
-  }
-  
-  .Description p {
-    margin : 10px 0 15px;
-    font-size: 23px;
-    opacity: 0.95;
+    &:after{
+      display: none;
+    }
   }
   
   .Description {
     margin : 10px;
+    p {
+      margin : 10px 0 15px;
+      font-size: 23px;
+      opacity: 0.95;
+    }
   }
   
   .ScrollDown {
@@ -87,102 +115,43 @@ $breakpoint-xlarge: 1200px;
     letter-spacing: 1px;
     font-weight: 500;
     cursor: pointer;
-  }
-  
-  .ScrollDown p {
-    font-size: 16px;
-    margin: 10px;
-  }
-  
-  .ScrollDown svg {
-    color : var(--color-text);
-      animation: pulse 2s infinite;
+    p {
+      font-size: 16px;
+      margin: 10px;
+    }
+    svg {
+      color : var(--color-text);
+        animation: pulse 2s infinite;
+    }
   }
 }
 
 .App-content {
-  width: 100%;
+  width: 90vw;
   min-height: calc(100vh - 120px);
-  margin-top : 40px;
-  h1 {
-    font-size: 25px;
-    margin: 0 15px 40px;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    position: relative;
-    color: rgba(0, 0, 0, 0.8);
-    &::after{
-        content: "";
-        width: 35px;
-        height: 4px;
-        background: rgba(0, 0, 0, 0.8);
-        position: absolute;
-        bottom: -15px;
-        border-radius: 40px;
-    }
-  }
+  margin : 40px auto;
+  max-width: 960px;
   h2 {  
-    font-size: 16px;
-    display: flex;
-    font-weight: 500;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 30px
   }
-  .col-lg-3 {
-    height: 250px;
+  .chart-donut div {
+    margin : auto;
   }
-  .chartjs-render-monitor {
-    margin: auto;
-    display: flex!important;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transform: scale(1.6);
+  .apexcharts-donut-slice-0 {
+    fill : var(--main-color);
+    cursor: pointer;
   }
-
-  @media (max-width: $breakpoint-large) {
-    .chartjs-render-monitor {
-      transform: scale(0.55);
-    }
-  }
-  @media (max-width: $breakpoint-medium) {
-    .chartjs-render-monitor {
-      transform: scale(0.85);
-    }
-  }
-  @media (min-width : $breakpoint-large) {
-    .chart .col-lg-3:nth-child(1) {
-      margin-left: 30px;
-    }
-    .chart .col-lg-3:nth-child(2) {
-      margin-left: -30px;
-    }
-    .chart .col-lg-3:nth-child(3) {
-      margin-left: 30px;
-    }
-    .chart .col-lg-3:nth-child(4) {
-      margin-left: -30px;
-    }
-    .App-content .col-lg-3 {
-      height: 215px!important;
-    }
+  .apexcharts-donut-slice-1 {
+    fill : var(--main-color);
+    fill-opacity: .3;
+    pointer-events: none;
   }
 }
 
 .ColorPicker{
-  position: fixed;
+  position: absolute;
   right: 35px;
   border: 2px solid;
   width: 33px;
