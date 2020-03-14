@@ -16,14 +16,14 @@ class App extends React.Component {
       width: 0,
       height: 0,
       mainColor: localStorage.getItem("mainColor") ? localStorage.getItem("mainColor") : "#1B6758",
-      shots: null,
+      shots: [],
       dribbbleShotKey: null,
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
-  async componentDidMount() {
+  componentDidMount() {
     this.updateWindowDimensions();
-    await this.getDribbbleShots();
+    this.getDribbbleShots();
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.updateWindowDimensions);
   }
@@ -303,7 +303,7 @@ class App extends React.Component {
           <div className="container" id="dribbble-shots">
             <h1 className="animated fadeInDown">Last shots on <a href="https://dribbble.com/fteichma" target="_blank" rel="noopener noreferrer"><img src={dribbble} alt="Dribbble" /></a> </h1>
             <div ref={this.dribbbleShots} className="row animated bounceInUp fast">
-              {this.state.shots && (
+              {
                 this.state.shots.map((shot, key) => {
                   let date = new Date(shot.published_at);
                   let year = date.getFullYear();
@@ -320,16 +320,14 @@ class App extends React.Component {
                       onMouseOut={() => this.setState({ dribbbleShotKey: null })}
                       className={"col-lg-4 col-md-6 shot"}
                       style={{ backgroundImage: "url(" + shot.images.two_x + ")" }}>
-                      {this.state.dribbbleShotKey === key && (
-                        <div className="description">
-                          <p>{shot.title}</p>
-                          <p> <CalendarTodayRounded /> {_date}</p>
-                        </div>
-                      )}
+                      <div className="description">
+                        <p>{shot.title}</p>
+                        <p> <CalendarTodayRounded /> {_date}</p>
+                      </div>
                     </div>
                   );
                 })
-              )}
+              }
             </div>
           </div>
         </article>
