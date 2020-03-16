@@ -33,7 +33,15 @@ $breakpoint-xlarge: 1200px;
     }
     #facebook:hover {
       .social-svg-mask {
-        fill:#3b5998!important;
+        fill:#1097F6!important;
+      }
+      .social-svg-background {
+        fill:white!important;
+      }
+    }
+    #email:hover {
+      .social-svg-mask {
+        fill:grey!important;
       }
       .social-svg-background {
         fill:white!important;
@@ -101,10 +109,11 @@ $breakpoint-xlarge: 1200px;
   
   .Description {
     margin : 10px;
-    p {
+    span {
       margin : 10px 0 15px;
       font-size: 23px;
       opacity: 0.95;
+      color: var(--color-text);
     }
   }
   
@@ -131,10 +140,12 @@ $breakpoint-xlarge: 1200px;
   min-height: calc(100vh - 120px);
   margin : 40px auto;
   max-width: 960px;
-  h2 {  
-    font-size: 19px;
-    font-weight: 600;
-    margin-bottom: 30px
+  .chart{ 
+    h2 {  
+      font-size: 19px;
+      font-weight: 600;
+      margin : 2em;
+    }
   }
   .chart-donut div {
     margin : auto;
@@ -177,6 +188,48 @@ $breakpoint-xlarge: 1200px;
   top: 75px;
   right: 35px;
   z-index: 3;
+}
+
+.logo-infos {
+  h3 {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #616161;
+  }
+}
+
+#experience, #projects {
+  .box {
+    background-color: white;
+  box-shadow: 0 1px 2px #0000001a;
+  border-radius: 1em;
+  padding: 2em 1em;
+  margin : 2em 0;
+  .description {
+    padding : 1em;
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    li {
+      margin : 0.25em 1em;
+    }
+    img {
+      cursor: zoom-in;
+    }
+  }
+  .company-logo {
+    background: white;
+    padding: 2px;
+  }
+  .round {
+    border-radius: 15px;
+  }
+}
 }
 
 @-webkit-keyframes pulse {

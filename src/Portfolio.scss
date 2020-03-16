@@ -9,7 +9,6 @@ $width_ratio : 1.37;
 #dribbble-shots {
     margin-top:120px;
     margin-bottom:50px;
-    min-height: 100vh;
     h1 {
         display: flex;
         align-items: center;
@@ -20,11 +19,11 @@ $width_ratio : 1.37;
         }
     }
     .shot {
-        border-radius: 10px;
+        border-radius: 1em;
         background-size: cover;
         background-position: center center;
-        cursor: pointer;
-        box-shadow: 0 1px 6px rgba(0,0,0,.20), 0 0 1px rgba(0,0,0,0.15);
+        cursor: zoom-in;
+        box-shadow: 0 1px 2px #0000001a;
         transition: all ease-in 0.2s;
         transform: scale(0.90);
         display: flex;
@@ -33,11 +32,10 @@ $width_ratio : 1.37;
 	    justify-content: flex-end;
 	    align-items: flex-start;
         align-content: flex-start;
-        border : 4px solid white;
         .description {
             pointer-events: none;
             z-index: 2;
-            background: white;
+            background: linear-gradient(0deg,rgba(0,0,0,.6),transparent);
             position: absolute;
             width: 100%;
             height: 0px;
@@ -45,15 +43,16 @@ $width_ratio : 1.37;
             overflow: hidden;
             bottom: 0;
             left: 0;
-            border-radius: 0 0 6px 6px;
-            padding-left : 10px;
-            padding-right: 10px;
+            border-radius: 0 0 1em 1em;
+            padding-left : 20px;
+            padding-right: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            text-shadow: 0 0 10px rgba(0,0,0,.9);
             p {
-                font-size: 14px;
-                color: black;
+                font-size: 17px;
+                color: white;
                 margin: 0;
                 text-align: left;
                 font-weight: 600;
@@ -64,8 +63,8 @@ $width_ratio : 1.37;
                 }
             }
             p:last-child {
-                font-size: 12px;
-                color: rgb(114, 114, 114);
+                font-size: 15px;
+                color: whitesmoke;
                 font-weight: 600;
                 display: flex;
                 align-items: center;
@@ -73,9 +72,8 @@ $width_ratio : 1.37;
         }
         &:hover {
             transition: all ease-in 0.2s;
-            box-shadow: 0 1px 12px rgba(0,0,0,.20), 0 0 4px rgba(0,0,0,0.10);
             .description {
-                height: 50px;
+                height: 70px;
             }
         }
     }
