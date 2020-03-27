@@ -221,6 +221,17 @@ $breakpoint-xlarge: 1200px;
     img {
       cursor: zoom-in;
     }
+    @media (max-width: $breakpoint-medium) {
+      img{
+        width: 70%;
+        margin: auto;
+        display: flex;
+      }
+      .btn-link {
+        text-align: center;
+        margin: auto;
+      }
+    }
   }
   .company-logo {
     background: white;

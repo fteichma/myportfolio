@@ -10,8 +10,8 @@ import * as serviceWorker from './serviceWorker';
 import { ChromePicker } from 'react-color';
 import { ColorizeOutlined } from '@material-ui/icons';
 import OutsideClickHandler from 'react-outside-click-handler';
-import { FavoriteBorder } from '@material-ui/icons';
-
+/* import { FavoriteBorder } from '@material-ui/icons';
+ */
 
 export default class Root extends React.Component {
     constructor(props) {
@@ -87,11 +87,11 @@ export default class Root extends React.Component {
                         <Route component={NotFound} />
                     </Switch>
                 </Router>
-                <footer>
-                    <p>Developed with <FavoriteBorder /> by Fabian Teichmann </p>
+                {/*                 <footer>
                     <p>React v.{React.version}</p>
                     <p>Copyright © 2020</p>
-                </footer>
+                    <p>Developed with <FavoriteBorder /> by Fabian Teichmann </p>
+                </footer> */}
             </div>
         );
     }

@@ -440,13 +440,13 @@ class App extends React.Component {
           <div className="container" id="experience">
             <h1 className="animated fadeInDown">Experience</h1>
             <div className="row box">
-              <div className="col-4 pt-4 logo-infos">
-                <a href="https://app.automatly.co/" target="_blank" rel="noopener noreferrer"><img className="company-logo" src={automatly_logo} width="70px" alt="Automatly - Logo" /></a>
+              <div className="col-md-4 pt-4 logo-infos">
+                <img className="company-logo" src={automatly_logo} width="70px" alt="Automatly - Logo" />
                 <h3 className="mt-3"><b>Automatly</b></h3>
                 <h4>Internship</h4>
                 <h4>Nov 2019 - Feb 2020</h4>
               </div>
-              <div className="col-8 text-left description">
+              <div className="col-md-8 text-left description">
                 <h2>Front-end Web Developer / UI/UX Designer - ReactJS</h2>
                 <p>
                   Internship as Front-end & UI / UX Designer for the start-up "Automatly" (<a href="https://www.automatly.co/" target="_blank" rel="noopener noreferrer">automatly.co</a>), formerly "Chatbot Plus". Integration of a new version of the application with a lot of new features.
@@ -501,13 +501,13 @@ class App extends React.Component {
               </div>
             </div>
             <div className="row box">
-              <div className="col-4 pt-4 logo-infos">
-                <img className="company-logo" src={emergence_logo} width="70px" alt="Automatly - Logo" />
+              <div className="col-md-4 pt-4 logo-infos">
+                <img className="company-logo" src={emergence_logo} width="70px" alt="Emergence - Logo" />
                 <h3 className="mt-3"><b>Emergence</b></h3>
                 <h4>Volunteering</h4>
                 <h4>Nov 2018 - Feb 2019</h4>
               </div>
-              <div className="col-8 text-left description">
+              <div className="col-md-8 text-left description">
                 <h2>Web Developer - PHP</h2>
                 <p>
                   Internship as a volunteer full-stack PHP developer for the start-up "Emergence" incubated at VentureLab in Liège.
@@ -569,13 +569,13 @@ class App extends React.Component {
           <div className="container" id="projects">
             <h1 className="animated fadeInDown">My personal projects</h1>
             <div className="row box">
-              <div className="col-4 pt-4 logo-infos">
-                <img className="company-logo round" src={drunkable_logo} width="70px" alt="Automatly - Logo" />
+              <div className="col-md-4 pt-4 logo-infos">
+                <img className="company-logo round" src={drunkable_logo} width="70px" alt="Drunkable - Logo" />
                 <h3 className="mt-3"><b>Drunkable</b></h3>
                 <h4>Mobile App</h4>
                 <h4>Jun 2019</h4>
               </div>
-              <div className="col-8 text-left description">
+              <div className="col-md-8 text-left description">
                 <h2>Drunkable</h2>
                 <p>
                   Drunkable is a drinking game that allows you to make your evenings memorable with several modes available! Let the party begin!
@@ -634,13 +634,13 @@ class App extends React.Component {
               </div>
             </div>
             <div className="row box">
-              <div className="col-4 pt-4 logo-infos">
-                <img className="company-logo round" src={intraplus_logo} width="70px" alt="Automatly - Logo" />
+              <div className="col-md-4 pt-4 logo-infos">
+                <img className="company-logo round" src={intraplus_logo} width="70px" alt="19 Intra Plus - Logo" />
                 <h3 className="mt-3"><b>19 Intra Plus</b></h3>
                 <h4>Chrome extension</h4>
                 <h4>Dec. 2018</h4>
               </div>
-              <div className="col-8 text-left description">
+              <div className="col-md-8 text-left description">
                 <h2>19 Intra Plus</h2>
                 <p>
                   A chrome extension that adds useful information on Intranet 42 to the students of School 19. For example, the number of hours worked during the week, month or year, the 19 logo, a quote that changes when the page is refreshed, and the addition of a quick link to the clusters page.
@@ -678,7 +678,7 @@ class App extends React.Component {
             </div>
           </div>
         </article>
-      </div >
+      </div>
     );
   }
 }
