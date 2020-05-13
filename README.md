@@ -1,3 +1,3 @@
-<b>My portfolio</b>
+<b>My portfolio - ReactJS</b>
 
 Go to : https://www.fabianteichmann.be
